@@ -24,5 +24,5 @@ export default class Color extends RestEntity {
      */
     @IsHexColor()
     @Column({ unique: true })
-    color: string;
+    code: string;
 }
