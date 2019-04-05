@@ -23,4 +23,20 @@ export default class User extends RestEntity {
      */
     @Column({ select: false })
     password: string;
+
+    /**
+     * User displayName.
+     *
+     * @type {string}
+     */
+    @Column()
+    displayName: string;
+
+    /**
+     * User email.
+     *
+     * @type {string}
+     */
+    @Column()
+    email: string;
 }

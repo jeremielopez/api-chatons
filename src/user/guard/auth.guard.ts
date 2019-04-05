@@ -1,5 +1,6 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Observable }                                from 'rxjs';
+import UserController                                from '../controller/user.controller';
 import TokenService                                  from '../service/security/token.service';
 import UserService                                   from '../service/user.service';
 
@@ -25,6 +26,11 @@ export default class AuthGuard implements CanActivate {
      */
     canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
         const request = context.switchToHttp().getRequest();
+
+        if (context.getClass() === UserController && context.getHandler().toString().startsWith('create')) {
+            return true;
+        }
+
         const token = this.tokenService.retrieve(request);
         if (token) {
             try {
