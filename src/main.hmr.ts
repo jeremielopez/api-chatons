@@ -5,7 +5,7 @@ import { HttpExceptionFilter } from './starter/rest/exception/filter/http-except
 declare const module: any;
 
 async function bootstrap() {
-    const app = await NestFactory.create(BootstrapModule);
+    const app = await NestFactory.create(BootstrapModule, { cors: true });
     app.useGlobalFilters(new HttpExceptionFilter());
     await app.listen(3000);
 
